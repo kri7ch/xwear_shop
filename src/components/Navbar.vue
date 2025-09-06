@@ -8,50 +8,50 @@
             <ul>
                 <li><a href="#">Одежда</a>
                     <ul>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
+                        <li><a href="#">Женская одежда</a></li>
+                        <li><a href="#">Мужская одежда</a></li>
+                        <li><a href="#">Детская одежда</a></li>
                     </ul>
                 </li>
 
                 <li><a href="#">Обувь</a>
                     <ul>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
+                        <li><a href="#">Женская обувь</a></li>
+                        <li><a href="#">Мужская обувь</a></li>
+                        <li><a href="#">Спортивная обувь</a></li>
                     </ul>
                 </li>
 
                 <li><a href="#">Аксессуары</a>
                     <ul>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
+                        <li><a href="#">Сумки и рюкзаки</a></li>
+                        <li><a href="#">Головные уборы</a></li>
+                        <li><a href="#">Бижутерия</a></li>
                     </ul>
                 </li>
 
                 <li>
                     <a class="menu-caret" href="#">Бренды</a>
                     <ul>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
+                        <li><a href="#">Nike</a></li>
+                        <li><a href="#">Adidas</a></li>
+                        <li><a href="#">Zara</a></li>
                     </ul>
                 </li>
 
                 <li><a href="#">Расчет стоимости</a>
                     <ul>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
+                        <li><a href="#">Калькулятор доставки</a></li>
+                        <li><a href="#">Таблица размеров</a></li>
+                        <li><a href="#">Стоимость услуг</a></li>
                     </ul>
                 </li>
 
                 <li><a href="#">Информация</a>
                     <ul>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
+                        <li><a href="#">О нас</a></li>
+                        <li><a href="#">Доставка и оплата</a></li>
+                        <li><a href="#">Контакты</a></li>
                     </ul>
                 </li>
             </ul>

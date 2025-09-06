@@ -3,6 +3,10 @@ import MainPage from './components/MainPage.vue';
 
 const routes = [
     {
+        path: '/',
+        redirect: '/mainpage'
+    },
+    {
         path: '/mainpage',
         name: 'MainPage',
         component: MainPage
@@ -11,16 +15,6 @@ const routes = [
 
 const router = createRouter({
     history: createWebHistory(),
-    routes,
-    scrollBehavior(to, from, savedPosition) {
-        if (to.hash) {
-        return {
-            el: to.hash,
-            behavior: 'smooth',
-            top: 100
-        }
-        }
-        return savedPosition || { top: 0, behavior: 'smooth' }
-    }
+    routes
 });
 export default router;

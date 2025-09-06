@@ -83,8 +83,8 @@ nav {
 	left: 0px;
 	background: black;
 	margin: 0;
-	padding: 10px 20px;
-	width: 150px;
+	padding: 15px 25px;
+	width: 200px;
 	z-index: 9999;
 }
 .menu ul ul  {
@@ -97,10 +97,17 @@ nav {
 }
 .menu ul ul li a  {
 	display: block;
-	padding: 0;
+	padding: 8px 0;
 	background: black;
     color: white;
 	text-align: left;
+	transition: all 0.3s ease;
+}
+
+.menu ul ul li a:hover {
+	text-decoration: underline;
+	text-decoration-color: white;
+	text-underline-offset: 5px;
 }
 
 .link-icon {
@@ -223,4 +230,61 @@ nav {
     flex-direction: row;
     gap: 30px;
     margin-bottom: 100px;
+    margin-top: 50px;
+}
+
+.card-product {
+    cursor: pointer;
+}
+
+.footer {
+    background-color: black;
+}
+
+.catalog-footer-title-text {
+    font-family: rf-devi-extended-black;
+    font-size: 26px;
+    color: gray;
+}
+
+.footer-list ul li a {
+    color: #DCDCE0;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.footer-list ul li a:hover {
+    color: white;
+}
+
+.title-text {
+    color: white;
+    font-family: rf-devi-extended-regular;
+    font-size: 20px;
+}
+
+.footer-content {
+    padding: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.footer-list-ul {
+    margin: 20px 0px 30px 0px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    
+}
+
+.links-messangers a img {
+    margin: 10px 0px 10px 0px;
+    padding: 5px;
+}
+
+.info-subscribe {
+    color: #DCDCE0;
+    font-size: 15px;
+    margin-top: 15px;
 }

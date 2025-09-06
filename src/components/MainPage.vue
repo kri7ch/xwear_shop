@@ -81,6 +81,124 @@
             </div>
         </div>
     </div>
+
+    <div class="block-shoes">
+        <div class="block-top-content-block">
+            <h1 class="tag-catalog">
+                ОДЕЖДА
+            </h1>
+
+            <div class="link-more-products">
+                <p>БОЛЬШЕ ТОВАРОВ</p>
+                <img src="../assets/images/icons/arrow_right_black.svg" alt="">
+            </div>
+        </div>
+
+        <div class="block-shoes-buy">
+            <div class="card-product">
+                <div class="img-product">
+                    <img src="../assets/images/clothes/rubashka.svg" alt="">
+                </div>
+
+                <div class="block-name-price">
+                    <p class="name-product">NIKE COURT ZOOM CAGE 2</p>
+                    <p class="price-product">от 4 699 ₽</p>
+                </div>
+            </div>
+
+            <div class="card-product">
+                <div class="img-product">
+                    <img src="../assets/images/clothes/hudi.svg" alt="">
+                </div>
+
+                <div class="block-name-price">
+                    <p class="name-product">NIKE COURT ZOOM CAGE 2</p>
+                    <p class="price-product">от 4 699 ₽</p>
+                </div>
+            </div>
+
+            <div class="card-product">
+                <div class="img-product">
+                    <img src="../assets/images/clothes/rubashka_kletka.svg" alt="">
+                </div>
+
+                <div class="block-name-price">
+                    <p class="name-product">NIKE COURT ZOOM CAGE 2</p>
+                    <p class="price-product">от 4 699 ₽</p>
+                </div>
+            </div>
+
+            <div class="card-product">
+                <div class="img-product">
+                    <img src="../assets/images/clothes/hudi_blue.svg" alt="">
+                </div>
+
+                <div class="block-name-price">
+                    <p class="name-product">NIKE COURT ZOOM CAGE 2</p>
+                    <p class="price-product">от 4 699 ₽</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="block-shoes">
+        <div class="block-top-content-block">
+            <h1 class="tag-catalog">
+                АКСЕССУАРЫ
+            </h1>
+
+            <div class="link-more-products">
+                <p>БОЛЬШЕ ТОВАРОВ</p>
+                <img src="../assets/images/icons/arrow_right_black.svg" alt="">
+            </div>
+        </div>
+
+        <div class="block-shoes-buy">
+            <div class="card-product">
+                <div class="img-product">
+                    <img src="../assets/images/clothes/kepka_obey.svg" alt="">
+                </div>
+
+                <div class="block-name-price">
+                    <p class="name-product">NIKE COURT ZOOM CAGE 2</p>
+                    <p class="price-product">от 4 699 ₽</p>
+                </div>
+            </div>
+
+            <div class="card-product">
+                <div class="img-product">
+                    <img src="../assets/images/clothes/sumka_palace.svg" alt="">
+                </div>
+
+                <div class="block-name-price">
+                    <p class="name-product">NIKE COURT ZOOM CAGE 2</p>
+                    <p class="price-product">от 4 699 ₽</p>
+                </div>
+            </div>
+
+            <div class="card-product">
+                <div class="img-product">
+                    <img src="../assets/images/clothes/shapka_supreme.svg" alt="">
+                </div>
+
+                <div class="block-name-price">
+                    <p class="name-product">NIKE COURT ZOOM CAGE 2</p>
+                    <p class="price-product">от 4 699 ₽</p>
+                </div>
+            </div>
+
+            <div class="card-product">
+                <div class="img-product">
+                    <img src="../assets/images/clothes/sumka_supreme.svg" alt="">
+                </div>
+
+                <div class="block-name-price">
+                    <p class="name-product">NIKE COURT ZOOM CAGE 2</p>
+                    <p class="price-product">от 4 699 ₽</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </template>
 
 <script>
