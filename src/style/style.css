@@ -170,9 +170,11 @@ nav {
 
 .block-shoes {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 80px;
+    margin: 80px auto 0;
+    width: 75%;
     max-width: 80%;
 }
 
@@ -200,8 +202,25 @@ nav {
 }
 
 .block-top-content-block {
+    width: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+}
+
+.name-product {
+    font-family: rf-devi-extended-regular;
+}
+
+.price-product {
+    font-size: 18px;
+    color: #3C3C3C;
+}
+
+.block-shoes-buy {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    margin-bottom: 100px;
 }

@@ -34,6 +34,52 @@
                 <img src="../assets/images/icons/arrow_right_black.svg" alt="">
             </div>
         </div>
+
+        <div class="block-shoes-buy">
+            <div class="card-product">
+                <div class="img-product">
+                    <img src="../assets/images/clothes/nike_court_zoom_cage_2.svg" alt="">
+                </div>
+
+                <div class="block-name-price">
+                    <p class="name-product">NIKE COURT ZOOM CAGE 2</p>
+                    <p class="price-product">от 4 699 ₽</p>
+                </div>
+            </div>
+
+            <div class="card-product">
+                <div class="img-product">
+                    <img src="../assets/images/clothes/air_force_1_ultra.svg" alt="">
+                </div>
+
+                <div class="block-name-price">
+                    <p class="name-product">NIKE COURT ZOOM CAGE 2</p>
+                    <p class="price-product">от 4 699 ₽</p>
+                </div>
+            </div>
+
+            <div class="card-product">
+                <div class="img-product">
+                    <img src="../assets/images/clothes/air_force_1_ultra_flyknit.svg" alt="">
+                </div>
+
+                <div class="block-name-price">
+                    <p class="name-product">NIKE COURT ZOOM CAGE 2</p>
+                    <p class="price-product">от 4 699 ₽</p>
+                </div>
+            </div>
+
+            <div class="card-product">
+                <div class="img-product">
+                    <img src="../assets/images/clothes/mens_soccer_shoes.svg" alt="">
+                </div>
+
+                <div class="block-name-price">
+                    <p class="name-product">NIKE COURT ZOOM CAGE 2</p>
+                    <p class="price-product">от 4 699 ₽</p>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
