@@ -1,7 +1,9 @@
 <template>
     <nav>
         <div class="nameShop">
-            <h1 class="shopName">XWEAR</h1>
+            <router-link to="/mainpage" class="brand-link">
+                <h1 class="shopName">XWEAR</h1>
+            </router-link>
         </div>
 
         <div class="menu">
@@ -66,9 +68,9 @@
                 <img src="../assets/images/icons/star_icon.svg" alt="">
             </a>
 
-            <a href="#">
+            <router-link to="/account" class="user-profile-link">
                 <img src="../assets/images/icons/user_icon.svg" alt="">
-            </a>
+            </router-link>
 
             <a href="#" class="bascket-info-link">
                 <img src="../assets/images/icons/bascket_icon.svg" alt="">

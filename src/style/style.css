@@ -39,6 +39,12 @@ nav {
     color: #49D0FF;
 }
 
+.brand-link {
+    text-decoration: none;
+    color: inherit;
+    display: inline-block;
+}
+
 .link-page {
     display: flex;
     flex-direction: row;
@@ -287,4 +293,216 @@ nav {
     color: #DCDCE0;
     font-size: 15px;
     margin-top: 15px;
+}
+
+.subscribe-form {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-top: 20px;
+    position: relative;
+    padding-bottom: 8px;
+    max-width: 410px;
+}
+
+.subscribe-form::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background: #6A6A6A;
+}
+
+.subscribe-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    border-bottom: none;
+    color: #DCDCE0;
+    height: 42px;
+    line-height: 42px;
+    font-size: 16px;
+    outline: none;
+    padding: 0;
+}
+
+.subscribe-input::placeholder {
+    color: #424347;
+    opacity: 1;
+}
+
+.subscribe-send {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: none;
+    background: white;
+    color: black;
+    font-size: 24px;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.subscribe-send:hover {
+    background: #DCDCE0;
+}
+
+.subscribe-legal {
+    color: #707076;
+    font-size: 14px;
+    margin: 20px 0 16px;
+    max-width: 450px;
+}
+
+.subscribe-links {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 20%;
+}
+
+.subscribe-link {
+    color: #707076;
+    font-size: 14px;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.subscribe-link:hover {
+    color: white;
+}
+
+/* Страница авторизации регистрации */
+
+.account-page {
+  width: 75%;
+  max-width: 1200px;
+  margin: 40px auto 80px;
+}
+
+.account-title {
+    font-family: rf-devi-extended-black;
+    font-size: 24px;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+}
+
+.account-panels {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.account-panel {
+    background: white;
+    border: 1px solid #E9EAEE;
+    border-radius: 5px;
+    padding: 24px;
+}
+
+.panel-title {
+    font-family: rf-devi-extended-regular;
+    font-size: 18px;
+    margin-bottom: 16px;
+}
+
+.account-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.account-page .form-group {
+    background-color: #F9F9F9;
+    border-radius: 5px;
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.account-page .form-group .form-input {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+}
+
+.form-label {
+    font-size: 16px;
+    color: #3C3D44;
+}
+
+.form-input {
+    height: 40px;
+    background-color: #F9F9F9;
+    border: none;
+    outline: none;
+    font-size: 16px;
+}
+
+.account-page .form-input::placeholder {
+    color: #424347;
+    opacity: 1;
+}
+
+.form-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 4px;
+}
+
+.checkbox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+}
+
+.forgot-link {
+    font-size: 14px;
+    color: #676767;
+    text-decoration: none;
+}
+
+.forgot-link:hover {
+    color: black;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.submit-btn-enter {
+    margin-top: 8px;
+    height: 66px;
+    width: 200px;
+    align-self: center;
+    border: none;
+    border-radius: 6px;
+    background: black;
+    color: white;
+    font-size: 14px;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+.submit-btn-reg {
+    margin-top: 8px;
+    height: 66px;
+    width: 300px;
+    align-self: center;
+    border: none;
+    border-radius: 6px;
+    background: black;
+    color: white;
+    font-size: 14px;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+.submit-btn:hover {
+    background: #202122;
 }

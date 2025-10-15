@@ -58,6 +58,21 @@
             <div class="subscribe-news">
                 <h2 class="title-text">ПОДПИСКА НА НОВОСТИ</h2>
                 <p class="info-subscribe">Будьте в курсе скидок и новостей</p>
+                <form class="subscribe-form" @submit.prevent="onSubscribe">
+                    <input
+                        class="subscribe-input"
+                        type="email"
+                        placeholder="Ваш email"
+                        aria-label="Ваш email"
+                        required
+                    />
+                    <button class="subscribe-send" type="submit" aria-label="Отправить">›</button>
+                </form>
+                <p class="subscribe-legal">Подписываясь на рассылку вы<br>соглашаетесь с обработкой персональных данных</p>
+                <div class="subscribe-links">
+                    <a href="#" class="subscribe-link">ПОЛИТИКА КОНФИДЕНЦИАЛЬНОСТИ</a>
+                    <a href="#" class="subscribe-link">ПОЛЬЗОВАТЕЛЬСКОЕ СОГЛАШЕНИЕ</a>
+                </div>
             </div>
         </div>
         
@@ -66,6 +81,11 @@
 
 <script>
 export default {
-  name: 'AppFooter'
+  name: 'AppFooter',
+  methods: {
+    onSubscribe() {
+      // здесь будет логика отправки
+    }
+  }
 }
 </script>
