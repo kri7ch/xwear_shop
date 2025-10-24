@@ -81,11 +81,6 @@
 
 <script>
 export default {
-  name: 'AppFooter',
-  methods: {
-    onSubscribe() {
-      // здесь будет логика отправки
-    }
-  }
+  name: 'AppFooter'
 }
 </script>

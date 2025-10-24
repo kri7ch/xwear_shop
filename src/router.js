@@ -15,7 +15,8 @@ const routes = [
     {
         path: '/account',
         name: 'Account',
-        component: AccountPage
+        component: AccountPage,
+        meta: { requiresAuth: true }
     }
 ]
 
@@ -23,4 +24,23 @@ const router = createRouter({
     history: createWebHistory(),
     routes
 });
+
+router.beforeEach(async (to, from, next) => {
+    if (to.name === 'Account' && to.query.mode === 'login') {
+        return next();
+    }
+    if (!to.meta.requiresAuth) {
+        return next();
+    }
+    try {
+        const response = await fetch('/api/users/me', { credentials: 'include' })
+      if (response.ok) {
+            return next();
+        }
+        return next({ name: 'Account', query: { mode: 'login' } });
+    } catch (e) {
+        return next({ name: 'Account', query: { mode: 'login' } });
+    }
+});
+
 export default router;
