@@ -16,7 +16,7 @@
                 Только качественные вещи.
             </p>
 
-            <button class="btn-catalog-add">
+            <button class="btn-catalog-add" @click="goToCatalog">
                 <p>ПЕРЕЙТИ В КАТАЛОГ</p>
                 <img src="../assets/images/icons/arrow_right.svg" alt="">
             </button>
@@ -29,7 +29,7 @@
                 ОБУВЬ
             </h1>
 
-            <div class="link-more-products">
+            <div class="link-more-products" @click="goToCategoryShoes">
                 <p>БОЛЬШЕ ТОВАРОВ</p>
                 <img src="../assets/images/icons/arrow_right_black.svg" alt="">
             </div>
@@ -46,7 +46,7 @@
                 ОДЕЖДА
             </h1>
 
-            <div class="link-more-products">
+            <div class="link-more-products" @click="goToCategoryClothes">
                 <p>БОЛЬШЕ ТОВАРОВ</p>
                 <img src="../assets/images/icons/arrow_right_black.svg" alt="">
             </div>
@@ -63,7 +63,7 @@
                 АКСЕССУАРЫ
             </h1>
 
-            <div class="link-more-products">
+            <div class="link-more-products" @click="goToCategoryAccessories">
                 <p>БОЛЬШЕ ТОВАРОВ</p>
                 <img src="../assets/images/icons/arrow_right_black.svg" alt="">
             </div>
@@ -108,6 +108,14 @@ export default {
       const cats = ['Hats','Caps','Bags']
       return this.products.filter(p => cats.includes(p.category))
     }
+  },
+  methods: {
+    goToCatalog() {
+      this.$router.push('/catalog')
+    },
+    goToCategoryShoes() { this.goToCatalog() },
+    goToCategoryClothes() { this.goToCatalog() },
+    goToCategoryAccessories() { this.goToCatalog() }
   }
 }
 </script>
