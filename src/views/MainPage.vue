@@ -36,7 +36,7 @@
         </div>
 
         <div class="block-shoes-buy">
-            <ProductCard v-for="p in shoesProducts.slice(0,4)" :key="p.id" :product="p" />
+            <ProductCard v-for="p in shoesProducts.slice(0,4)" :key="p.id" :product="p" @click="goToProduct(p.id)" />
         </div>
     </div>
 
@@ -53,7 +53,7 @@
         </div>
 
         <div class="block-shoes-buy">
-            <ProductCard v-for="p in clothesProducts.slice(0,4)" :key="p.id" :product="p" />
+            <ProductCard v-for="p in clothesProducts.slice(0,4)" :key="p.id" :product="p" @click="goToProduct(p.id)" />
         </div>
     </div>
 
@@ -70,7 +70,7 @@
         </div>
 
         <div class="block-shoes-buy">
-            <ProductCard v-for="p in accessoriesProducts.slice(0,4)" :key="p.id" :product="p" />
+            <ProductCard v-for="p in accessoriesProducts.slice(0,4)" :key="p.id" :product="p" @click="goToProduct(p.id)" />
         </div>
     </div>
 </template>
@@ -115,7 +115,10 @@ export default {
     },
     goToCategoryShoes() { this.goToCatalog() },
     goToCategoryClothes() { this.goToCatalog() },
-    goToCategoryAccessories() { this.goToCatalog() }
+    goToCategoryAccessories() { this.goToCatalog() },
+    goToProduct(id) {
+      this.$router.push({ name: 'Product', params: { id } })
+    }
   }
 }
 </script>

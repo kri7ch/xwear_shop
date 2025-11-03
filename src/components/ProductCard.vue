@@ -1,5 +1,5 @@
 <template>
-  <div class="card-product">
+  <div class="card-product" @click="$emit('click')">
     <div class="img-product">
       <img :src="product.mainImageUrl" :alt="product.name">
     </div>
@@ -16,6 +16,7 @@ export default {
   props: {
     product: { type: Object, required: true }
   },
+  emits: ['click'],
   computed: {
     minPrice() {
       const sizes = this.product?.sizes || []

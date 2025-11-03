@@ -359,9 +359,6 @@ export default {
       this.currentPage = 1
     },
     
-    // URL теперь не изменяем при выборе категории — остаёмся на /catalog
-    
-    
     goToProduct(productId) {
       this.$router.push({ name: 'Product', params: { id: productId } })
     }
