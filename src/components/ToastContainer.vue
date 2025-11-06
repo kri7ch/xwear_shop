@@ -18,7 +18,7 @@ export default {
   mounted() {
     this.unsubscribe = subscribeToast((t) => {
       this.toasts.push(t)
-      setTimeout(() => this.remove(t.id), t.timeout || 3000)
+      setTimeout(() => this.remove(t.id), t.timeout || 2000)
     })
   },
   beforeUnmount() {

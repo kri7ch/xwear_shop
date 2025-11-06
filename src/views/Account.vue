@@ -123,9 +123,48 @@
             </div>
           </section>
 
+          <section class="edit-profile" v-if="activeTab === 'editProfile'">
+            <h2 class="profile-info-title">Редактировать профиль</h2>
+            <form class="account-form-edit" @submit.prevent="onUpdateProfile">
+              <div class="form-group">
+                <label class="form-label">Имя:</label>
+                <input class="form-input" type="text" v-model="editName" placeholder="Ваше имя" />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Email адрес:</label>
+                <input class="form-input" type="email" v-model="editEmail" placeholder="email@example.com" />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Телефон:</label>
+                <input class="form-input" type="tel" v-model="editPhone" placeholder="+7…" />
+              </div>
+              <button class="submit-btn-enter" type="submit">Сохранить</button>
+            </form>
+          </section>
+
+          <section class="change-password" v-if="activeTab === 'password'">
+            <h2 class="profile-info-title">Сменить пароль</h2>
+            <form class="account-form-edit" @submit.prevent="onChangePassword">
+              <div class="form-group">
+                <label class="form-label">Текущий пароль:</label>
+                <input class="form-input" type="password" v-model="passwordCurrent" placeholder="*********************" />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Новый пароль:</label>
+                <input class="form-input" type="password" v-model="passwordNew" placeholder="минимум 6 символов" />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Повторите новый пароль:</label>
+                <input class="form-input" type="password" v-model="passwordRepeat" placeholder="*********************" />
+              </div>
+              <button class="submit-btn-enter" type="submit">Обновить пароль</button>
+            </form>
+          </section>
+
           <section class="orders" v-if="activeTab === 'orders'">
             <h2>Текущие заказы</h2>
-            <table class="orders-table">
+            <div v-if="orders.length === 0" class="orders-empty">У вас пока нет заказов</div>
+            <table v-else class="orders-table">
               <thead>
                 <tr>
                   <th>Номер</th>
@@ -135,14 +174,59 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="order in sampleOrders" :key="order.id">
+                <tr v-for="order in orders" :key="order.id">
                   <td>#{{ order.id }}</td>
                   <td>{{ order.date }}</td>
                   <td>{{ order.status }}</td>
-                  <td>{{ order.total }} ₽</td>
+                  <td>{{ order.totalAmount }} ₽</td>
                 </tr>
               </tbody>
             </table>
+          </section>
+
+          <section class="orders-history" v-if="activeTab === 'ordersHistory'">
+            <h2 style="margin: 0 0 12px;">История заказов</h2>
+            <div v-if="ordersHistory.length === 0" class="orders-empty">У вас пока нет заказов</div>
+            <table v-else class="orders-table">
+              <thead>
+                <tr>
+                  <th>Номер</th>
+                  <th>Дата</th>
+                  <th>Статус</th>
+                  <th>Итог</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="order in ordersHistory" :key="order.id">
+                  <td>#{{ order.id }}</td>
+                  <td>{{ order.date }}</td>
+                  <td>{{ order.status }}</td>
+                  <td>{{ order.totalAmount }} ₽</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+
+          <section class="addresses" v-if="activeTab === 'addresses'">
+            <h2>Адреса</h2>
+            <div class="address-card empty">
+              <img class="address-icon" src="../assets/images/icons/addres.svg" alt="Адрес" />
+              <div class="address-text">
+                <div class="address-title">Добавьте адрес доставки</div>
+                <div class="address-subtitle">Укажите город, улицу, дом, район и индекс</div>
+              </div>
+            </div>
+          </section>
+
+          <section class="edit-addresses" v-if="activeTab === 'editAddresses'">
+            <h2>Редактировать адрес</h2>
+            <div class="address-edit-card">
+              <div class="address-edit-row">
+                <input class="address-input" type="text" v-model="editAddress" placeholder="Адрес доставки" disabled />
+                <button class="btn-primary" disabled>Сохранить</button>
+              </div>
+              <p class="disabled-note">Редактирование временно недоступно</p>
+            </div>
           </section>
         </main>
       </div>
@@ -181,12 +265,17 @@ export default {
       regPassword: '',
       regPasswordRepeat: '',
 
-      sampleOrders: [
-        { id: 5653, date: '27/06/2023', status: 'В обработке', total: 4699 },
-        { id: 5654, date: '27/06/2023', status: 'Отправлен', total: 4699 },
-        { id: 5655, date: '27/06/2023', status: 'В обработке', total: 4699 },
-        { id: 5656, date: '27/06/2023', status: 'Отправлен', total: 4699 }
-      ]
+      editEmail: '',
+      editName: '',
+      editPhone: '',
+
+      passwordCurrent: '',
+      passwordNew: '',
+      passwordRepeat: '',
+
+      orders: [],
+      ordersHistory: [],
+      editAddress: ''
     }
   },
   async mounted() {
@@ -195,6 +284,26 @@ export default {
   methods: {
     openLogoutConfirm() {
       this.showLogoutConfirm = true
+    },
+    async loadOrders() {
+      try {
+        const res = await fetch('/api/orders', { credentials: 'include' })
+        if (res.ok) {
+          this.orders = await res.json()
+        }
+      } catch (e) {
+        // ignore
+      }
+    },
+    async loadOrdersHistory() {
+      try {
+        const res = await fetch('/api/orders/history', { credentials: 'include' })
+        if (res.ok) {
+          this.ordersHistory = await res.json()
+        }
+      } catch (e) {
+        // ignore
+      }
     },
     cancelLogout() {
       this.showLogoutConfirm = false
@@ -205,17 +314,73 @@ export default {
     },
     async fetchMe() {
       try {
-        const res = await fetch('/api/users/me', { credentials: 'include' })
+        const res = await fetch('/api/users/profile', { credentials: 'include' })
         if (res.ok) {
           this.user = await res.json()
           this.isAuth = true
           this.mode = 'profile'
           this.activeTab = 'profile'
+          this.editEmail = this.user?.email || ''
+          this.editName = this.user?.name || ''
+          this.editPhone = this.user?.phone || ''
         } else {
           this.isAuth = false
         }
       } catch (e) {
         this.isAuth = false
+      }
+    },
+    async onUpdateProfile() {
+      const payload = {}
+      const emailTrim = (this.editEmail || '').trim()
+      if (emailTrim.length > 0) {
+        payload.email = emailTrim
+      }
+      payload.name = this.editName
+      payload.phone = this.editPhone
+      try {
+        const res = await fetch('/api/users/profile', {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          credentials: 'include',
+          body: JSON.stringify(payload)
+        })
+        const data = await res.json().catch(() => null)
+        if (!res.ok) {
+          showToast('error', (data && data.message) || 'Ошибка обновления профиля')
+          return
+        }
+        this.user = data
+        showToast('success', 'Профиль обновлён')
+        this.activeTab = 'profile'
+      } catch (e) {
+        showToast('error', 'Сеть недоступна или сервер недоступен')
+      }
+    },
+    async onChangePassword() {
+      if (this.passwordNew !== this.passwordRepeat) {
+        showToast('error', 'Новые пароли не совпадают')
+        return
+      }
+      try {
+        const res = await fetch('/api/users/profile/password', {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          credentials: 'include',
+          body: JSON.stringify({ currentPassword: this.passwordCurrent, newPassword: this.passwordNew })
+        })
+        const data = await res.json().catch(() => null)
+        if (!res.ok) {
+          showToast('error', (data && data.message) || 'Не удалось обновить пароль')
+          return
+        }
+        showToast('success', 'Пароль обновлён')
+        this.passwordCurrent = ''
+        this.passwordNew = ''
+        this.passwordRepeat = ''
+        this.activeTab = 'profile'
+      } catch (e) {
+        showToast('error', 'Сеть недоступна или сервер недоступен')
       }
     },
     async onLogin() {
@@ -276,6 +441,16 @@ export default {
       this.mode = 'login'
       this.activeTab = 'profile'
       this.$router.replace({ name: 'Account', query: { mode: 'login' } })
+    }
+  }
+  ,
+  watch: {
+    activeTab(val) {
+      if (val === 'orders') {
+        this.loadOrders()
+      } else if (val === 'ordersHistory') {
+        this.loadOrdersHistory()
+      }
     }
   }
 }

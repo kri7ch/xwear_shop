@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("XwearShopAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c3e458dcd2825de67d10041a6e9ab68df99a0b92")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cb43f92f4dd3e98b41b9d3ad61ce4562143682de")]
 [assembly: System.Reflection.AssemblyProductAttribute("XwearShopAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("XwearShopAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Security.Claims;
+using System.Text.Json;
 using XwearShopAPI.Model;
 
 namespace XwearShopAPI.Controllers
@@ -80,9 +81,9 @@ namespace XwearShopAPI.Controllers
             return Ok(new { message = "ok" });
         }
 
-        [HttpGet("me")]
+        [HttpGet("profile")]
         [Authorize]
-        public async Task<IActionResult> Me()
+        public async Task<IActionResult> Profile()
         {
             var userIdStr = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (string.IsNullOrEmpty(userIdStr) || !int.TryParse(userIdStr, out var userId))
@@ -93,6 +94,74 @@ namespace XwearShopAPI.Controllers
                 return Unauthorized();
 
             return Ok(new { id = user.Id, email = user.Email, name = user.Name, phone = user.Phone });
+        }
+
+        [HttpPut("profile")]
+        [Authorize]
+        public async Task<IActionResult> UpdateProfile([FromBody] User input)
+        {
+            var userIdStr = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrEmpty(userIdStr) || !int.TryParse(userIdStr, out var userId))
+                return Unauthorized();
+
+            var user = await _db.Users.FindAsync(userId);
+            if (user == null)
+                return Unauthorized();
+
+            if (input.Email != null)
+            {
+                var newEmail = (input.Email ?? string.Empty).Trim();
+                if (string.IsNullOrWhiteSpace(newEmail))
+                    return BadRequest(new { message = "Email не может быть пустым" });
+
+                if (!string.Equals(newEmail, user.Email, StringComparison.OrdinalIgnoreCase))
+                {
+                    var exists = await _db.Users.AnyAsync(u => u.Email == newEmail);
+                    if (exists)
+                        return Conflict(new { message = "Пользователь с таким email уже существует" });
+
+                    user.Email = newEmail;
+                }
+            }
+
+            if (input.Name != null)
+                user.Name = string.IsNullOrWhiteSpace(input.Name) ? null : input.Name.Trim();
+
+            if (input.Phone != null)
+                user.Phone = string.IsNullOrWhiteSpace(input.Phone) ? null : input.Phone.Trim();
+
+            await _db.SaveChangesAsync();
+
+            return Ok(new { id = user.Id, email = user.Email, name = user.Name, phone = user.Phone });
+        }
+
+        [HttpPut("profile/password")]
+        [Authorize]
+        public async Task<IActionResult> ChangePassword([FromBody] User input)
+        {
+            var currentPassword = input.CurrentPassword ?? string.Empty;
+            var newPassword = input.NewPassword ?? string.Empty;
+            if (string.IsNullOrWhiteSpace(currentPassword) || string.IsNullOrWhiteSpace(newPassword))
+                return BadRequest(new { message = "Текущий и новый пароли обязательны" });
+
+            var userIdStr = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrEmpty(userIdStr) || !int.TryParse(userIdStr, out var userId))
+                return Unauthorized();
+
+            var user = await _db.Users.FindAsync(userId);
+            if (user == null)
+                return Unauthorized();
+
+            if (user.Password != currentPassword)
+                return BadRequest(new { message = "Текущий пароль неверен" });
+
+            if (newPassword.Length < 6)
+                return BadRequest(new { message = "Новый пароль должен быть не менее 6 символов" });
+
+            user.Password = newPassword;
+            await _db.SaveChangesAsync();
+
+            return Ok(new { message = "password_updated" });
         }
 
         [HttpPost("logout")]

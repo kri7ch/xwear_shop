@@ -23,8 +23,7 @@ namespace XwearShopAPI.Controllers
                 {
                     id = b.Id,
                     name = b.Name
-                })
-                .ToListAsync();
+                }).ToListAsync();
 
             return Ok(brands);
         }
@@ -32,14 +31,12 @@ namespace XwearShopAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<object>> GetById(int id)
         {
-            var brand = await _context.Brands
-                .Where(b => b.Id == id)
+            var brand = await _context.Brands.Where(b => b.Id == id)
                 .Select(b => new
                 {
                     id = b.Id,
                     name = b.Name
-                })
-                .FirstOrDefaultAsync();
+                }).FirstOrDefaultAsync();
 
             if (brand == null)
                 return NotFound();

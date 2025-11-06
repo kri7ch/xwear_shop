@@ -36,6 +36,89 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "XwearShopAPI.Controllers.CartController",
+    "Method": "GetCart",
+    "RelativePath": "api/cart",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "XwearShopAPI.Controllers.CartController",
+    "Method": "Add",
+    "RelativePath": "api/cart/add",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "incoming",
+        "Type": "XwearShopAPI.Model.Cart",
+        "IsRequired": true
+      },
+      {
+        "Name": "size",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "quantity",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "XwearShopAPI.Controllers.CartController",
+    "Method": "Remove",
+    "RelativePath": "api/cart/remove",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "incoming",
+        "Type": "XwearShopAPI.Model.Cart",
+        "IsRequired": true
+      },
+      {
+        "Name": "size",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "XwearShopAPI.Controllers.CartController",
+    "Method": "Update",
+    "RelativePath": "api/cart/update",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "incoming",
+        "Type": "XwearShopAPI.Model.Cart",
+        "IsRequired": true
+      },
+      {
+        "Name": "size",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "quantity",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "XwearShopAPI.Controllers.CategoriesController",
     "Method": "GetAll",
     "RelativePath": "api/Categories",
@@ -108,6 +191,47 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "XwearShopAPI.Controllers.OrdersController",
+    "Method": "GetMyOrders",
+    "RelativePath": "api/orders",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "XwearShopAPI.Controllers.OrdersController",
+    "Method": "CreateOrder",
+    "RelativePath": "api/orders",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "payment",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "input",
+        "Type": "XwearShopAPI.Model.Order",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "XwearShopAPI.Controllers.OrdersController",
+    "Method": "GetMyOrdersHistory",
+    "RelativePath": "api/orders/history",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "XwearShopAPI.Controllers.ProductsController",
     "Method": "GetAll",
     "RelativePath": "api/products",
@@ -177,12 +301,44 @@
   },
   {
     "ContainingType": "XwearShopAPI.Controllers.UsersController",
-    "Method": "Me",
-    "RelativePath": "api/users/me",
+    "Method": "Profile",
+    "RelativePath": "api/users/profile",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "XwearShopAPI.Controllers.UsersController",
+    "Method": "UpdateProfile",
+    "RelativePath": "api/users/profile",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "input",
+        "Type": "XwearShopAPI.Model.User",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "XwearShopAPI.Controllers.UsersController",
+    "Method": "ChangePassword",
+    "RelativePath": "api/users/profile/password",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "input",
+        "Type": "XwearShopAPI.Model.User",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   },
   {

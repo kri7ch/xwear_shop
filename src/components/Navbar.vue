@@ -72,9 +72,9 @@
                 <img src="../assets/images/icons/user_icon.svg" alt="">
             </router-link>
 
-            <a href="#" class="bascket-info-link">
+            <router-link to="/cart" class="bascket-info-link">
                 <img src="../assets/images/icons/bascket_icon.svg" alt="">
-            </a>
+            </router-link>
         </div>
     </nav>
 </template>

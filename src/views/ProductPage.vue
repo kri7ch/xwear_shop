@@ -182,14 +182,34 @@ export default {
       try { return new Intl.NumberFormat('ru-RU').format(v) + ' ₽' } catch (_) { return v + ' ₽' }
     },
     addToCart() {
-      if (!this.selectedSize) return
-      showToast('success', `Размер ${this.selectedSize.size} добавлен в корзину`)
+      if (!this.selectedSize || !this.product) return
+      ;(async () => {
+        try {
+          const res = await fetch(`/api/cart/add?size=${encodeURIComponent(Number(this.selectedSize.size))}&quantity=1`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            credentials: 'include',
+            body: JSON.stringify({ productId: this.product.id })
+          })
+          if (res.status === 401) {
+            showToast('warning', 'Авторизуйтесь, чтобы добавить в корзину')
+            this.$router.push({ name: 'Account', query: { mode: 'login' } })
+            return
+          }
+          if (res.ok) {
+            showToast('success', `Размер ${this.selectedSize.size} добавлен в корзину`)
+          } else {
+            showToast('error', 'Не удалось добавить товар в корзину')
+          }
+        } catch (e) {
+          showToast('error', 'В данный момент невозможно добавить товар в корзину')
+        }
+      })()
     },
     goToProduct(id) {
       this.$router.push({ name: 'Product', params: { id } })
     },
     goBack() {
-      // Вернуться на предыдущую страницу, если она есть; иначе в каталог
       if (window.history && window.history.length > 1) {
         this.$router.back()
       } else {

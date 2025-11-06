@@ -23,8 +23,7 @@ namespace XwearShopAPI.Controllers
                 {
                     id = c.Id,
                     name = c.Name
-                })
-                .ToListAsync();
+                }).ToListAsync();
 
             return Ok(categories);
         }
@@ -38,8 +37,7 @@ namespace XwearShopAPI.Controllers
                 {
                     id = c.Id,
                     name = c.Name
-                })
-                .FirstOrDefaultAsync();
+                }).FirstOrDefaultAsync();
 
             if (category == null)
                 return NotFound();

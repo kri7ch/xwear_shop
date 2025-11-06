@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <AppNavbar />
-    <router-view />
+    <main class="app-main">
+      <router-view />
+    </main>
     <AppFooter />
     <ToastContainer />
   </div>
@@ -22,3 +24,17 @@ export default {
   }
 }
 </script>
+
+<style>
+html, body, #app { 
+    min-height: 100vh;
+}
+
+#app { 
+  display: flex; 
+  flex-direction: column; 
+}
+.app-main { 
+  flex: 1 0 auto; 
+}
+</style>

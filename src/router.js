@@ -3,6 +3,7 @@ import MainPage from './views/MainPage.vue';
 import AccountPage from './views/Account.vue';
 import CatalogPage from './views/CatalogPage.vue';
 import ProductPage from './views/ProductPage.vue';
+import CartPage from './views/CartPage.vue';
 
 const routes = [
     {
@@ -29,6 +30,17 @@ const routes = [
         name: 'Account',
         component: AccountPage,
         meta: { requiresAuth: true }
+    },
+    {
+        path: '/cart',
+        name: 'Cart',
+        component: CartPage
+    },
+    {
+        path: '/checkout',
+        name: 'Checkout',
+        component: () => import('./views/CheckoutPage.vue'),
+        meta: { requiresAuth: true }
     }
 ]
 
@@ -45,7 +57,7 @@ router.beforeEach(async (to, from, next) => {
         return next();
     }
     try {
-        const response = await fetch('/api/users/me', { credentials: 'include' })
+        const response = await fetch('/api/users/profile', { credentials: 'include' })
       if (response.ok) {
             return next();
         }

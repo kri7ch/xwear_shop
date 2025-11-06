@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Pomelo.EntityFrameworkCore.MySql.Scaffolding.Internal;
@@ -68,17 +68,25 @@ public partial class DbExwearContext : DbContext
 
             entity.HasIndex(e => e.UserId, "user_cart_fk_idx");
 
+            entity.HasIndex(e => e.SizeId, "size_cart_fk_idx");
+
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Count)
                 .HasDefaultValueSql("'1'")
                 .HasColumnName("count");
             entity.Property(e => e.ProductId).HasColumnName("product_id");
+            entity.Property(e => e.SizeId).HasColumnName("size_id");
             entity.Property(e => e.UserId).HasColumnName("user_id");
 
             entity.HasOne(d => d.Product).WithMany(p => p.Carts)
                 .HasForeignKey(d => d.ProductId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("product_cart_fk");
+
+            entity.HasOne(d => d.Size).WithMany()
+                .HasForeignKey(d => d.SizeId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("size_cart_fk");
 
             entity.HasOne(d => d.User).WithMany(p => p.Carts)
                 .HasForeignKey(d => d.UserId)

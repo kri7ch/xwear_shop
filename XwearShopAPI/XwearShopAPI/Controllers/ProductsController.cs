@@ -18,13 +18,7 @@ namespace XwearShopAPI.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var products = await _db.Products
-                .Include(p => p.Brand)
-                .Include(p => p.Category)
-                .Include(p => p.Model)
-                .Include(p => p.Images)
-                .Include(p => p.Sizes)
-                .ToListAsync();
+            var products = await _db.Products.Include(p => p.Brand).Include(p => p.Category).Include(p => p.Model).Include(p => p.Images).Include(p => p.Sizes).ToListAsync();
 
             var result = products.Select(p => new
             {
@@ -43,13 +37,7 @@ namespace XwearShopAPI.Controllers
         [HttpGet("{id:int}")]
         public async Task<IActionResult> GetById(int id)
         {
-            var p = await _db.Products
-                .Include(p => p.Brand)
-                .Include(p => p.Category)
-                .Include(p => p.Model)
-                .Include(p => p.Images)
-                .Include(p => p.Sizes)
-                .FirstOrDefaultAsync(p => p.Id == id);
+            var p = await _db.Products.Include(p => p.Brand).Include(p => p.Category).Include(p => p.Model).Include(p => p.Images).Include(p => p.Sizes).FirstOrDefaultAsync(p => p.Id == id);
             if (p == null)
                 return NotFound();
 
