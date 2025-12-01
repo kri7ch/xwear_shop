@@ -56,6 +56,7 @@
 </template>
 
 <script>
+import { setCartCount } from '../utils/cartBadge'
 export default {
   name: 'CartPage',
   data() {
@@ -76,8 +77,14 @@ export default {
         if (res.status === 401) {
           this.authRequired = true
           this.cart = { items: [], totalItems: 0, totalPrice: 0 }
+          setCartCount(0)
         } else if (res.ok) {
           this.cart = await res.json()
+          setCartCount(
+            (typeof this.cart.totalItems === 'number')
+              ? this.cart.totalItems
+              : (Array.isArray(this.cart.items) ? this.cart.items.length : 0)
+          )
         }
       } catch (e) {
         console.error('Не удалось загрузить корзину', e)
@@ -99,6 +106,11 @@ export default {
         })
         if (res.ok) {
           this.cart = await res.json()
+          setCartCount(
+            (typeof this.cart.totalItems === 'number')
+              ? this.cart.totalItems
+              : (Array.isArray(this.cart.items) ? this.cart.items.length : 0)
+          )
         }
       } catch (e) {
         console.error('Не удалось обновить количество', e)
@@ -127,6 +139,11 @@ export default {
         })
         if (res.ok) {
           this.cart = await res.json()
+          setCartCount(
+            (typeof this.cart.totalItems === 'number')
+              ? this.cart.totalItems
+              : (Array.isArray(this.cart.items) ? this.cart.items.length : 0)
+          )
         }
       } catch (e) {
         console.error('Не удалось удалить товар', e)

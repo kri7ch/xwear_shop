@@ -83,6 +83,7 @@
             </li>
           </ul>
         </aside>
+        
         <main class="profile-main">
           <h1 class="profile-title">ЛИЧНЫЙ КАБИНЕТ</h1>
           <p class="welcome">Приветствуем, {{ user?.name || user?.email }}!</p>
@@ -292,7 +293,7 @@ export default {
           this.orders = await res.json()
         }
       } catch (e) {
-        // ignore
+        console.error('Не удалось загрузить заказы', e)
       }
     },
     async loadOrdersHistory() {
@@ -302,7 +303,7 @@ export default {
           this.ordersHistory = await res.json()
         }
       } catch (e) {
-        // ignore
+        console.error('Не удалось загрузить историю заказов', e)
       }
     },
     cancelLogout() {
@@ -434,7 +435,7 @@ export default {
       try {
         await fetch('/api/users/logout', { method: 'POST', credentials: 'include' })
       } catch (e) {
-        console.error('Logout error:', e)
+        console.error('Ошибка:', e)
       }
       this.isAuth = false
       this.user = null

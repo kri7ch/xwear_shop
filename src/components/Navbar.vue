@@ -72,15 +72,48 @@
                 <img src="../assets/images/icons/user_icon.svg" alt="">
             </router-link>
 
-            <router-link to="/cart" class="bascket-info-link">
+            <router-link to="/cart" class="bascket-info-link cart-link">
                 <img src="../assets/images/icons/bascket_icon.svg" alt="">
+                <span v-if="cartCount > 0" class="cart-dot" aria-hidden="true"></span>
             </router-link>
         </div>
     </nav>
 </template>
 
 <script>
+import { subscribeCartCount } from '../utils/cartBadge'
+
 export default {
-  name: 'AppNavbar'
+  name: 'AppNavbar',
+  data() {
+    return { cartCount: 0 }
+  },
+  mounted() {
+    this.loadCartCount()
+    this._unsubCart = subscribeCartCount((count) => {
+      this.cartCount = Math.max(0, Number(count) || 0)
+    })
+  },
+  beforeUnmount() {
+    if (this._unsubCart) this._unsubCart()
+  },
+  methods: {
+    async loadCartCount() {
+      try {
+        const res = await fetch('/api/cart', { credentials: 'include' })
+        if (res.ok) {
+          const cart = await res.json().catch(() => null)
+          const count = (cart && typeof cart.totalItems === 'number')
+            ? cart.totalItems
+            : (Array.isArray(cart?.items) ? cart.items.length : 0)
+          this.cartCount = Math.max(0, Number(count) || 0)
+        } else if (res.status === 401) {
+          this.cartCount = 0
+        }
+      } catch (_) {
+        this.cartCount = 0
+      }
+    }
+  }
 }
 </script>

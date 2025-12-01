@@ -101,6 +101,7 @@
 <script>
 import ProductCard from '../components/ProductCard.vue'
 import { showToast } from '../utils/toast'
+import { setCartCount } from '../utils/cartBadge'
 
 export default {
   name: 'ProductPage',
@@ -197,6 +198,13 @@ export default {
             return
           }
           if (res.ok) {
+            const data = await res.json().catch(() => null)
+            if (data) {
+              const count = (typeof data.totalItems === 'number')
+                ? data.totalItems
+                : (Array.isArray(data.items) ? data.items.length : undefined)
+              if (typeof count !== 'undefined') setCartCount(count)
+            }
             showToast('success', `Размер ${this.selectedSize.size} добавлен в корзину`)
           } else {
             showToast('error', 'Не удалось добавить товар в корзину')

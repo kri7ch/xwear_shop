@@ -79,7 +79,7 @@
           </div>
           <div class="field">
             <label>Имя на карте</label>
-            <input v-model.trim="cardName" type="text" placeholder="IVAN IVANOV" />
+            <input v-model.trim="cardName" type="text" placeholder="IVANOV IVAN" />
           </div>
           <div class="checkout-row">
             <div class="field">
@@ -107,6 +107,7 @@
 
 <script>
 import { showToast } from '../utils/toast'
+import { setCartCount } from '../utils/cartBadge'
 
 export default {
   name: 'CheckoutPage',
@@ -205,6 +206,7 @@ export default {
           return
         }
         const { id } = await res.json()
+        setCartCount(0)
         showToast('success', `Заказ #${id} успешно оформлен`)
         this.$router.push({ name: 'Account' })
       } catch (e) {

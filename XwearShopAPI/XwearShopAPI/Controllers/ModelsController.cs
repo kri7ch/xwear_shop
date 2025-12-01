@@ -18,8 +18,7 @@ namespace XwearShopAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<object>>> GetAll()
         {
-            var models = await _context.Models
-                .Select(m => new
+            var models = await _context.Models.Select(m => new
                 {
                     id = m.Id,
                     name = m.Name
@@ -31,8 +30,7 @@ namespace XwearShopAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<object>> GetById(int id)
         {
-            var model = await _context.Models.Where(m => m.Id == id)
-                .Select(m => new
+            var model = await _context.Models.Where(m => m.Id == id).Select(m => new
                 {
                     id = m.Id,
                     name = m.Name

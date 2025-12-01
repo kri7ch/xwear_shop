@@ -80,10 +80,7 @@ namespace XwearShopAPI.Controllers
                 return BadRequest(new { message = "address_invalid" });
             }
 
-            var cartItems = await _db.Carts
-                .Include(c => c.Size)
-                .Where(c => c.UserId == userId)
-                .ToListAsync();
+            var cartItems = await _db.Carts.Include(c => c.Size).Where(c => c.UserId == userId).ToListAsync();
 
             if (cartItems.Count == 0)
             {

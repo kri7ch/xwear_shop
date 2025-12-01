@@ -189,8 +189,7 @@ export default {
       
       const getMinPrice = (prod) => {
         const prices = Array.isArray(prod.sizes)
-          ? prod.sizes.map(s => Number(s.price)).filter(n => !isNaN(n))
-          : []
+          ? prod.sizes.map(s => Number(s.price)).filter(n => !isNaN(n)) : []
         return prices.length ? Math.min(...prices) : 0
       }
       
